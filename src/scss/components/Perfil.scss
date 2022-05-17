@@ -20,12 +20,13 @@
 
 .Main{
     grid-area: Main;
-    background-color: #f5f5f5;
+    border-left: 1px solid map-get($colors, "one");
 }
 
 .Hr{
     grid-area: Hr;
 }
+
 
 .Grid-container {
     max-width: 95%;
