@@ -1,0 +1,92 @@
+@import '../abstracts/variables';
+
+.WriteSection{
+    width: 95%;
+    margin-left: 2.5%;
+    background: white;
+    box-shadow: 0px 0px 5px 1px rgba($color: #000000, $alpha: 0.2);
+    border: none;
+    border-radius: 25px;
+    display: flex;
+}
+
+
+.PerfilComment{
+    width: 70px;
+    height: 70px;
+    margin: 10px;
+}
+
+.PerfilComment img{
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+    border-radius: 50px;
+}
+
+.CommentSection{
+    width: 100%;
+    text-align: left;
+    margin: 10px;
+}
+
+.CommentSection label{
+    color: map-get($colors, "four");
+}
+
+.CommentSection input{
+    border: none;
+    border-bottom: 2px solid map-get($colors, "one");
+    width: 100%;
+    margin-top: 20px;
+    margin-bottom: 10px;
+    outline: none;
+    font-size: 16px;
+}
+
+.Actions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.ButtonsActions{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.ButtonsActions button{
+    margin-right: 10px;
+    font-size: 18px;
+    border: none;
+    background: none;
+    color: map-get($colors, "three");
+    cursor: pointer;
+}
+
+.Gif{
+    width: 18px;
+    height: 18px;
+    background-image: url('../../images/gif.png');
+    background-size: 18px 18px;
+    background-repeat: no-repeat;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.Send{
+    height: 25px;
+    padding-top: 5px;
+    padding-left: 5px;
+    padding-right: 5px;
+    padding-bottom: 5px;
+    background: map-get($colors, "gradient");
+    border: none;
+    border-radius: 15px;
+    font-family: $font-principal;
+    font-size: 15px;
+    color: map-get($colors , "one" );
+    cursor: pointer;
+}

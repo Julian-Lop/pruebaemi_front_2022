@@ -1,0 +1,13 @@
+@import '../abstracts/variables';
+
+.PublicationSection hr{
+    margin-top: 20px;
+    width: 100%;
+    border: 1px solid map-get($colors, "one");
+}
+
+.PublicationContainer{
+    height: 500px;
+    overflow: scroll;
+    overflow-x: hidden;
+}
