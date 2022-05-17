@@ -20,7 +20,7 @@ export default function Publication(){
                 <div><button><i class="far fa-comment"></i></button><p>8</p></div>
                 <div><button><i class="far fa-heart"></i></button><p>32</p></div>
             </div>
-            <hr></hr>
+            <hr className='HrPublication'></hr>
         </div>
     )
 }
