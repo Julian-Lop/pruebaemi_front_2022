@@ -1,0 +1,33 @@
+@import '../abstracts/variables';
+
+.PhotoPerfilContainer{
+    width: 95%;
+    margin-left: 2.5%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.Test{
+    margin: 5px;
+    width: 120px;
+    height: 120px;
+    background: map-get($colors, "four");
+}
+
+@media (min-width: 800px){
+    .PhotoPerfilContainer{
+        width: 80%;
+        margin-left: 10%;
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: space-around;
+    }
+    
+    .Test{
+        margin: 5px;
+        width: 150px;
+        height: 150px;
+        background: map-get($colors, "four");
+    }
+}
