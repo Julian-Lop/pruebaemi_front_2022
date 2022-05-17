@@ -42,7 +42,7 @@
     color: map-get($colors, "four");
 }
 
-.Publication hr{
+.Publication .HrPublication{
     margin: 0;
     border: 1px solid map-get($colors, "one");
 }

@@ -15,6 +15,36 @@
     background: map-get($colors, "four");
 }
 
+.FotosPerfil h1{
+    color: map-get($colors, "five");
+    font-family: $font-principal;
+    font-size: 45px;
+}
+
+.AddPhoto{
+    border: none;
+    color: map-get($colors, "one");
+    padding: 5px;
+    border-radius: 10px;
+    background: map-get($colors, "gradient");
+    font-family: $font-principal;
+    cursor: pointer;
+    font-size: 15px;
+}
+
+.EditPhoto{
+    position: relative;
+    border: none;
+    color: map-get($colors, "one");
+    padding: 10px;
+    border-radius: 20px;
+    background: map-get($colors, "gradient");
+    cursor: pointer;
+    font-size: 18px;
+    box-shadow: 0px 0px 5px 1px rgba($color: #000000, $alpha: 0.5) ;
+}
+
+
 @media (min-width: 800px){
     .PhotoPerfilContainer{
         width: 80%;
@@ -29,5 +59,19 @@
         width: 150px;
         height: 150px;
         background: map-get($colors, "four");
+    }
+
+    .EditPhoto{
+        position: absolute;
+        right: 50px;
+        bottom: 20%;
+        border: none;
+        color: map-get($colors, "one");
+        padding: 10px;
+        border-radius: 20px;
+        background: map-get($colors, "gradient");
+        cursor: pointer;
+        font-size: 18px;
+        box-shadow: 0px 0px 5px 1px rgba($color: #000000, $alpha: 0.5) ;
     }
 }

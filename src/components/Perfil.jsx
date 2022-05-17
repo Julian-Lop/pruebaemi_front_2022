@@ -1,6 +1,7 @@
 import WriteSection from './WriteSection'
 import PublicationSection from './PublicationSection'
 import FotosPerfil from './FotosPerfil'
+import FriendSection from './FriendSection'
 import '../scss/components/Perfil.scss'
 import image from '../images/imageperfil.png'
 
@@ -49,6 +50,7 @@ export default function Perfil(){
                 </aside>
                 <article className='Main'>
                     <FotosPerfil/>
+                    <FriendSection/>
                 </article> 
             </div>
         </div>
