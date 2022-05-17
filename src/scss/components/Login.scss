@@ -66,7 +66,7 @@ p{
     display: flex;
     margin-bottom: 10px;
     align-items: center;
-    color: map-get($colors, "two") ;
+    color: map-get($colors, "four") ;
 }
 
 .Checkbox{
@@ -86,7 +86,7 @@ p{
     background-color: black;
 }
 
-hr{
+.Login hr{
     width: 100%;
     border: 1px solid map-get($colors, "three");
     margin-bottom: 10px;
@@ -107,7 +107,7 @@ hr{
     padding-bottom: 5px;
     padding-left: 10px;
     padding-right: 10px;
-    background: linear-gradient(to top, #023843, #78ffd6);
+    background: map-get($colors, "gradient");
     border: none;
     border-radius: 10px;
     font-family: $font-principal;
