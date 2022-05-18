@@ -1,4 +1,5 @@
-import {useState} from 'react'
+import {useEffect, useState} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
 import WriteSection from './WriteSection'
 import PublicationSection from './PublicationSection'
 import FotosPerfil from './FotosPerfil'
@@ -6,10 +7,18 @@ import FriendSection from './FriendSection'
 import ModalAddFriend from './ModalAddFriend'
 import '../scss/components/Perfil.scss'
 import image from '../images/imageperfil.png'
+import { recharge } from '../Redux/Action'
 
 export default function Perfil(){
+    const dispatch = useDispatch()
+
+    const user = useSelector((state) => state.user)
 
     const [modal, setmodal] = useState(false)
+
+    useEffect(()=>{
+        dispatch(recharge())
+    },[])
 
     return (
         <div className="Perfil">
@@ -25,8 +34,8 @@ export default function Perfil(){
                     <div className='Info'>
                         <div className='InfoBasic'>
                             <div className='InfoName'>
-                                <h1>Nombre</h1>
-                                <h3>Profesión</h3>
+                                <h1>{user?user.name:null}</h1>
+                                <h3>{user.name?user.company.name:null}</h3>
                             </div>
                             <div className='InfoSta'>
                                 <div>

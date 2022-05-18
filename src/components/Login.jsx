@@ -1,7 +1,12 @@
 import {useState} from "react"
+import {useNavigate} from 'react-router-dom'
+import {useDispatch} from 'react-redux'
+import {getUser} from '../Redux/Action'
 import '../scss/components/Login.scss'
 
 export default function Login(){
+    const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const [user, setuser] = useState({
         email:null,
@@ -15,12 +20,19 @@ export default function Login(){
         })
     }
 
-    const handleSubmit = (e) => {
+    const handleSubmit =async (e) => {
         e.preventDefault()
+        let temp
         if(user.email && user.password){
+            temp = await dispatch(getUser(user.email))
+            user.email = ''
+            user.password = ''
+            if(temp.payload[0].name) return navigate('/perfil')
             return alert(user.email+'|'+user.password)
         }
         alert('there are empty fields')
+        user.email = ''
+        user.password = ''
     }
 
     return (
@@ -46,7 +58,6 @@ export default function Login(){
                     <label>Recuperar contraseña</label>
                     <button type="submit">Iniciar Sesión</button>
                 </div>
-                
             </form>
         </div>
     )

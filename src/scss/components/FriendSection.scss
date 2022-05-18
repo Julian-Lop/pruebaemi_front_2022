@@ -21,6 +21,17 @@
     font-size: 45px;
 }
 
+.FriendSection button{
+    border: none;
+    color: map-get($colors, "one");
+    padding: 5px;
+    border-radius: 10px;
+    background: map-get($colors, "gradient");
+    font-family: $font-principal;
+    cursor: pointer;
+    font-size: 15px;
+}
+
 @media (min-width: 800px){
     .FriendContainer{
         width: 80%;
@@ -35,16 +46,5 @@
         width: 90px;
         height: 90px;
         background: map-get($colors, "four");
-    }
-
-    .FriendSection button{
-        border: none;
-        color: map-get($colors, "one");
-        padding: 5px;
-        border-radius: 10px;
-        background: map-get($colors, "gradient");
-        font-family: $font-principal;
-        cursor: pointer;
-        font-size: 15px;
     }
 }
