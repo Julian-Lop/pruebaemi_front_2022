@@ -11,7 +11,6 @@ export default function PrivateRoutes(){
     const dispatch = useDispatch()
 
     useEffect( ()=>{
-
         const token = localStorage.getItem('token')
         if(!token) return navigate('/')
         async function fetchData(){
@@ -19,7 +18,7 @@ export default function PrivateRoutes(){
             if(!temp.payload[0].name) return navigate('/')
         }
         fetchData()    
-    })
+    },[])
 
     return(
         <div>

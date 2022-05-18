@@ -1,14 +1,17 @@
 import '../scss/components/WriteSection.scss'
-import image from '../images/imageperfil.png'
+import { useSelector } from 'react-redux'
 
-export default function WriteSection(){
+export default function WriteSection({user}){
+
+    const photo = useSelector((state) => state.photos)
+
     return (
         <div className="WriteSection">
             <div className="PerfilComment">
-                <img src={image} alt="imagencomentario"></img>
+                <img src={photo.length?photo.find(photo => photo.id === user.id).url:null} alt="imagencomentario"></img>
             </div>
             <div className="CommentSection">
-                <label>Hola, cuentale a tus compañeros ¿Cómo va tu día laboral?</label>
+                <label>Hola {user.name}, cuéntale a tus compañeros ¿Cómo va tu día laboral?</label>
                 <input type="text"></input>
                 <div className="Actions">
                     <div className='ButtonsActions'>

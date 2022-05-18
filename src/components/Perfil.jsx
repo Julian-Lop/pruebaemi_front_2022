@@ -6,18 +6,23 @@ import FotosPerfil from './FotosPerfil'
 import FriendSection from './FriendSection'
 import ModalAddFriend from './ModalAddFriend'
 import '../scss/components/Perfil.scss'
-import image from '../images/imageperfil.png'
-import { recharge } from '../Redux/Action'
+import { recharge, getAllPhotos, getAllUsers, getAllPosts} from '../Redux/Action'
 
 export default function Perfil(){
     const dispatch = useDispatch()
 
     const user = useSelector((state) => state.user)
+    const users = useSelector((state) => state.users)
+    const photos = useSelector((state) => state.photos)
+    const posts = useSelector((state) => state.posts)
 
     const [modal, setmodal] = useState(false)
 
     useEffect(()=>{
         dispatch(recharge())
+        dispatch(getAllUsers())
+        dispatch(getAllPosts())
+        dispatch(getAllPhotos())
     },[])
 
     return (
@@ -29,13 +34,13 @@ export default function Perfil(){
                 </header>
                 <nav className='Navbar'>
                     <div className='Photo'>
-                        <img src={image} alt='fotoperfil'></img>
+                        <img src={photos.length?photos[0].url:null} alt='fotoperfil'></img>
                     </div>
                     <div className='Info'>
                         <div className='InfoBasic'>
                             <div className='InfoName'>
                                 <h1>{user?user.name:null}</h1>
-                                <h3>{user.name?user.company.name:null}</h3>
+                                <h3>{user.name?user.company.catchPhrase:null}</h3>
                             </div>
                             <div className='InfoSta'>
                                 <div>
@@ -60,12 +65,12 @@ export default function Perfil(){
                 </nav>
                 <div className='Hr'><hr></hr></div>
                 <aside className='Sidebar'>
-                    <WriteSection/>
-                    <PublicationSection/>
+                    <WriteSection user={user}/>
+                    <PublicationSection posts={posts}/>
                 </aside>
                 <article className='Main'>
-                    <FotosPerfil/>
-                    <FriendSection modal={modal} setmodal={setmodal}/>
+                    <FotosPerfil user={user}/>
+                    <FriendSection modal={modal} setmodal={setmodal} friends={users}/>
                 </article> 
             </div>
             {modal?
