@@ -71,7 +71,13 @@
     margin: 5px;
     width: 100px;
     height: 100px;
-    background: gainsboro;
+}
+
+.Profile img{
+    height: 100%;
+    width: 100%;
+    object-fit: cover;
+    border-radius: 50%;
 }
 
 .Current{
@@ -102,8 +108,8 @@
         margin: auto;
         background: white;
         border-radius: 20px;
-        width: 50%;
-        height: 70%;
+        width: 60%;
+       
         backdrop-filter: blur(5px);
     }
     
@@ -146,13 +152,18 @@
         display: flex;
         flex-wrap: wrap;
         justify-content: space-around;
+        text-align: center;
+    }
+
+    
+    .BoxProfiles label{
+        color: map-get($colors, "four");
     }
 
     .Profile{
         margin: 5px;
-        width: 110px;
-        height: 110px;
-        background: gainsboro;
+        width: 105px;
+        height: 105px;
     }
 
     .Current{

@@ -1,19 +1,23 @@
 import '../scss/components/Publication.scss'
-import image from '../images/imageperfil.png'
+import { useSelector } from 'react-redux'
 
-export default function Publication(){
+export default function Publication({publication}){
+
+    const users = useSelector((state) => state.users)
+    const photos = useSelector((state) => state.photos)
+
     return (
         <div className="Publication">
             <div className='Post'>
                 <div className="PerfilPhoto">
-                    <img src={image} alt="imagencomentario"></img>
+                    <img src={photos.length?photos.find(photo => photo.id === publication.userId).url:null} alt="imagencomentario"></img>
                 </div>
                 <div className="PostInfo">
                     <div>
-                        <h2>Nombre</h2>
-                        <label>@nombre 2h</label>
+                        <h2>{users.length?users.find(user => user.id === publication.userId).name:null}</h2>
+                        <label>{users.length?users.find(user => user.id === publication.userId).email:null}</label>
                     </div>
-                    <p>Texto de la publicación</p>
+                    <p>{publication?publication.body:null}</p>
                 </div>
             </div>
             <div className='ReactSection'>

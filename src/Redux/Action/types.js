@@ -1,3 +1,6 @@
 export const GET_USER = 'GET_USER'
-export const RECHARGE = 'RECHARGE'
 export const LOGOUT = 'LOGOUT'
+export const GET_ALL_USERS = 'GET_ALL_USERS'
+export const GET_ALL_PHOTOS = 'GET_ALL_PHOTOS'
+export const GET_ALL_POSTS = 'GET_ALL_POSTS'
+export const GET_SUGGESTION = 'GET_SUGGESTION'

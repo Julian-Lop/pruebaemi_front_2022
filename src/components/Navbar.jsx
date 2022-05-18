@@ -1,12 +1,14 @@
-import {useDispatch} from 'react-redux'
+import {useDispatch, useSelector} from 'react-redux'
 import {Link, useNavigate} from "react-router-dom"
 import {logout} from "../Redux/Action/index"
-import image from '../images/imageperfil.png'
 import '../scss/components/Nav.scss'
 
 export default function Navbar(){
     const dispatch = useDispatch()
     const navigate = useNavigate()
+
+    const user = useSelector((state) => state.user)
+    const photo = useSelector((state) => state.photos)
 
     const exitSession = () => {
         dispatch(logout())
@@ -43,7 +45,7 @@ export default function Navbar(){
                     <i class="far fa-bell"></i>
                 </div>
                 <div className='PhotoUser'>
-                    <Link to="/perfil"><img src={image} alt='FotoPerfil'></img></Link>
+                    <Link to="/perfil"><img src={photo.length?photo.find(photo => photo.id === user.id).url:null} alt='FotoPerfil'></img></Link>
                 </div>
                 <div className='Logout'>
                     <label onClick={() => exitSession()}>Cerrar Sesión</label>
