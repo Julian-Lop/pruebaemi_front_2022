@@ -1,6 +1,7 @@
 import {BrowserRouter as Router, Route, Routes, Navigate} from 'react-router-dom'
 import Login from './components/Login'
 import Perfil from './components/Perfil'
+import Fotos from './components/Fotos'
 import './scss/components/App.scss'
 
 function App() {
@@ -11,7 +12,7 @@ function App() {
           <Route path='/' element={<Navigate replace to="/login"/>}/> 
           <Route path='/login' element={<Login/>}/>
           <Route path='/perfil' element={<Perfil/>}/>
-          <Route path='/fotos' element={<div> <h1>Fotos</h1></div>}/>
+          <Route path='/fotos' element={<Fotos/>}/>
         </Routes>
       </Router>
     </div>
