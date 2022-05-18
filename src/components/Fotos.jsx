@@ -1,8 +1,18 @@
+import {useEffect} from 'react'
+import {useDispatch, useSelector} from 'react-redux'
+import { recharge } from '../Redux/Action'
 import '../scss/components/Perfil.scss'
 import '../scss/components/Fotos.scss'
 import image from '../images/imageperfil.png'
 
 export default function Fotos(){
+    const dispatch = useDispatch()
+
+    const user = useSelector((state) => state.user)
+
+    useEffect(()=>{
+        dispatch(recharge())
+    },[])
 
     const n = [1,2,3,4,5,6,7,8,9,1,1,1,1,1,1]
 
@@ -19,8 +29,8 @@ export default function Fotos(){
                     <div className='Info'>
                         <div className='InfoBasic'>
                             <div className='InfoName'>
-                                <h1>Nombre</h1>
-                                <h3>Profesión</h3>
+                                <h1>{user?user.name:null}</h1>
+                                <h3>{user.company?user.company.catchPhrase:null}</h3>
                             </div>
                             <div className='InfoSta'>
                                 <div>
@@ -49,7 +59,7 @@ export default function Fotos(){
                         <div className='PictureProfile'>
                             <img src={image} alt='PictureInGallery'></img>
                         </div>
-                        <div className='UserName'><h1>Nombre</h1></div>
+                        <div className='UserName'><h1>{user?user.name:null}</h1></div>
                         <button className='EditInfo'><i class="far fa-edit"></i></button>
                     </div>
                     <hr></hr>
