@@ -1,5 +1,4 @@
 import '../scss/components/FotosPerfil.scss'
-import Camera from '../images/camera.png'
 
 export default function FotosPerfil(){
     return(

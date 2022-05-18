@@ -1,13 +1,19 @@
+import {useState} from 'react'
 import WriteSection from './WriteSection'
 import PublicationSection from './PublicationSection'
 import FotosPerfil from './FotosPerfil'
 import FriendSection from './FriendSection'
+import ModalAddFriend from './ModalAddFriend'
 import '../scss/components/Perfil.scss'
 import image from '../images/imageperfil.png'
 
 export default function Perfil(){
+
+    const [modal, setmodal] = useState(false)
+
     return (
         <div className="Perfil">
+
             <div className='Grid-container'>
                 <header className='Header'>
                     <div className='ImageBack'></div>
@@ -50,9 +56,13 @@ export default function Perfil(){
                 </aside>
                 <article className='Main'>
                     <FotosPerfil/>
-                    <FriendSection/>
+                    <FriendSection modal={modal} setmodal={setmodal}/>
                 </article> 
             </div>
+            {modal?
+            <ModalAddFriend modal={modal} setmodal={setmodal}/>
+            :null
+            }
         </div>
     )
 }
