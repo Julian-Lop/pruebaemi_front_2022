@@ -167,6 +167,7 @@
 
 @media (min-width: 800px){
     .Grid-container{
+        margin-bottom: 50px;
         grid-template:
         "Header Header" 200px
         "Navbar Navbar" max-content

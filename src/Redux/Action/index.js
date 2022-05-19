@@ -5,7 +5,9 @@ import {
     GET_ALL_USERS,
     GET_ALL_PHOTOS,
     GET_ALL_POSTS,
-    GET_SUGGESTION
+    GET_SUGGESTION,
+    ADD_FRIEND,
+    SEND_POST
 }
 from './types'
 
@@ -79,6 +81,26 @@ export const getSuggestion = () => {
     return function(dispatch){
         try {
             return dispatch({type:GET_SUGGESTION})
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export const addFriend = (friend) => {
+    return function(dispatch){
+        try {
+            return dispatch({type:ADD_FRIEND, payload:friend})
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export const sendPost = (post) => {
+    return function(dispatch){
+        try {
+            return dispatch({type:SEND_POST, payload:post})
         } catch (error) {
             console.log(error)
         }

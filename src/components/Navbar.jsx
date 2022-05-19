@@ -1,3 +1,4 @@
+import { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {Link, useNavigate} from "react-router-dom"
 import {logout} from "../Redux/Action/index"
@@ -19,7 +20,7 @@ export default function Navbar(){
         <div className="Nav">
             <div className='Column1'>
                 <div>
-                    <label>Tiempo de trabajo activo</label>
+                    <label>Tiempo de trabajo activo {count}</label>
                 </div>
                 <div className='CheckboxList'>
                     <div>

@@ -13,6 +13,7 @@ export default function Perfil(){
 
     const user = useSelector((state) => state.user)
     const users = useSelector((state) => state.users)
+    const friends = useSelector((state) => state.myFriends)
     const photos = useSelector((state) => state.photos)
     const posts = useSelector((state) => state.posts)
 
@@ -24,7 +25,6 @@ export default function Perfil(){
         dispatch(getAllPosts())
         dispatch(getAllPhotos())
     },[])
-
     return (
         <div className="Perfil">
 
@@ -34,7 +34,7 @@ export default function Perfil(){
                 </header>
                 <nav className='Navbar'>
                     <div className='Photo'>
-                        <img src={photos.length?photos[0].url:null} alt='fotoperfil'></img>
+                        <img src={photos.length?photos.find(photo => photo.id === user.id).url:null} alt='fotoperfil'></img>
                     </div>
                     <div className='Info'>
                         <div className='InfoBasic'>
@@ -44,11 +44,11 @@ export default function Perfil(){
                             </div>
                             <div className='InfoSta'>
                                 <div>
-                                    <input type="number" className='InputNum' value={38} readOnly></input>
+                                    <input type="number" className='InputNum' value={friends.length?friends.length:0} readOnly></input>
                                     <input type="text" className='InputText' value="Siguiendo" readOnly></input>
                                 </div>
                                 <div>
-                                    <input type="number" className='InputNum' value={38} readOnly></input>
+                                    <input type="number" className='InputNum' value={friends.length?friends.length:0} readOnly></input>
                                     <input type="text" className='InputText' value="Seguidores" readOnly></input>
                                 </div>
                             </div>
@@ -70,7 +70,7 @@ export default function Perfil(){
                 </aside>
                 <article className='Main'>
                     <FotosPerfil user={user}/>
-                    <FriendSection modal={modal} setmodal={setmodal} friends={users}/>
+                    <FriendSection modal={modal} setmodal={setmodal} friends={friends}/>
                 </article> 
             </div>
             {modal?

@@ -22,7 +22,7 @@ export default function FriendSection({modal,setmodal,friends}){
                         <label>{friend.name.split(' ')[0].concat(' '+friend.name.split(' ')[1][0])}</label>
                         </div>
                     )
-                }):'Cargando...'
+                }):'No tienes amigos'
                 }
             </div>
             <button onClick={() => changeModal()} ><i class="far fa-id-badge"></i> Ver todos los contactos</button>
