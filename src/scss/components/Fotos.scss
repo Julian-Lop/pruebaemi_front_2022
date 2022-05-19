@@ -44,6 +44,7 @@
     width: 95%;
     height: max-content;
     margin-left: 2.5%;
+    padding-bottom: 50px;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-around;
@@ -53,7 +54,6 @@
     width: 150px;
     height: 90px;
     margin: 5px;
-    background-color: gainsboro;
 }
 
 .EditInfo{
@@ -80,6 +80,43 @@
         width: 250px;
         height: 180px;
         margin: 5px;
-        background-color: gainsboro;
+        cursor: pointer;
+    }
+
+    .Gallery img{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+
+    .ButtonPage{
+        padding: 10px;
+        display: flex;
+        justify-content: right;
+        padding-right: 5%;
+    }
+
+    .ButtonSelect {
+        height: 35px;
+        width: 35px;
+        border: 1px solid map-get($colors, "three");
+        background: none;
+        border-radius: 50%;
+        margin-left: 10px;
+        cursor: pointer;
+    }
+
+    .ButtonSelect img{
+        margin-top: 5px;
+        width: 16px;
+        height: 16px;
+    }
+
+    .ButtonSelect:hover{
+        background: map-get($colors, "three");
+    }
+
+    .ButtonSelect:hover img{
+        filter: hue-rotate(60deg) brightness(500%);
     }
 }

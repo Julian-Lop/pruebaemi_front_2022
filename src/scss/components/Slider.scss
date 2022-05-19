@@ -1,0 +1,24 @@
+@import '../abstracts/variables';
+
+.Slider{
+    position: absolute;
+    left: 0;
+    right: 0;
+    margin: auto;
+    width: 500px;
+    height: 600px;
+}
+
+.Slider button{
+    position: absolute;
+    right: 0;
+    margin-right: 10px;
+    margin-top: 10px;
+    z-index: 2;
+    background: none;
+    border: none;
+    color: map-get($colors, "five");
+    font-size: 20px;
+    cursor: pointer;
+}
+

@@ -1,14 +1,21 @@
-import {useEffect} from 'react'
+import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import { recharge,getAllUsers,getAllPhotos } from '../Redux/Action'
 import '../scss/components/Perfil.scss'
 import '../scss/components/Fotos.scss'
+import flechaizq from '../images/flechaizq.png'
+import flechader from '../images/flechader.png'
+import Carousel from './Carousel'
 
 export default function Fotos(){
     const dispatch = useDispatch()
 
     const user = useSelector((state) => state.user)
     const photos = useSelector((state) => state.photos)
+    const friends = useSelector((state) => state.myFriends)
+
+    const [currentpage, setcurrentpage] = useState(0)
+    const [slider, setslider] = useState(false)
 
     useEffect(()=>{
         dispatch(recharge())
@@ -16,10 +23,25 @@ export default function Fotos(){
         dispatch(getAllPhotos())
     },[])
 
-    const n = [1,2,3,4,5,6,7,8,9,1,1,1,1,1,1]
+    const photosPage = ()=>{
+        return photos.slice(currentpage,currentpage+18)
+    }
+
+    const nextPage = () => {
+        if(currentpage < photos.length-18){
+            setcurrentpage(currentpage + 18)
+        }
+    }
+
+    const prevPage = () => {
+        if(currentpage > 0){
+            setcurrentpage(currentpage - 18)
+        }
+    }
 
     return(
         <div className="Fotos">
+            
             <div className='Grid-container'>
                 <header className='Header'>
                     <div className='ImageBack'></div>
@@ -36,11 +58,11 @@ export default function Fotos(){
                             </div>
                             <div className='InfoSta'>
                                 <div>
-                                    <input type="number" className='InputNum' value={38} readOnly></input>
+                                    <input type="number" className='InputNum' value={friends.length?friends.length:0} readOnly></input>
                                     <input type="text" className='InputText' value="Siguiendo" readOnly></input>
                                 </div>
                                 <div>
-                                    <input type="number" className='InputNum' value={38} readOnly></input>
+                                    <input type="number" className='InputNum' value={friends.length?friends.length:0} readOnly></input>
                                     <input type="text" className='InputText' value="Seguidores" readOnly></input>
                                 </div>
                             </div>
@@ -65,10 +87,18 @@ export default function Fotos(){
                         <button className='EditInfo'><i class="far fa-edit"></i></button>
                     </div>
                     <hr></hr>
+                    {slider?<Carousel photos={photosPage()} setslider={setslider} slider={slider}/>:null}
                     <div className='Gallery'>
-                        {n.map(e => {
-                            return (<div className='Item'></div>)
+                        {photosPage().map(photo => {
+                            return (
+                            <div className='Item'>
+                                <img src={photo.url} alt='imagenalbum' onClick={() => setslider(!slider)} />
+                            </div>)
                         })}
+                    </div>
+                    <div className='ButtonPage'>
+                        <button className='ButtonSelect' onClick={() => prevPage()}><img src={flechaizq}></img></button>
+                        <button className='ButtonSelect' onClick={() => nextPage()}><img src={flechader}></img></button>            
                     </div>
                 </div>
             </div>

@@ -1,22 +1,28 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {getSuggestion} from '../Redux/Action/index'
+import {getSuggestion,addFriend, getAllPosts} from '../Redux/Action/index'
 import '../scss/components/ModalAddFriend.scss'
 
 
 export default function ModalAddFriend({modal,setmodal}){
     const dispatch = useDispatch()
 
-    const users = useSelector((state) => state.users)
+    const friends = useSelector((state) => state.myFriends)
     const suggestions = useSelector((state) => state.suggestions)
     const photos = useSelector((state) => state.photos)
 
     useEffect(()=>{
         dispatch(getSuggestion())
-    },[])
+    },[dispatch])
 
     const changeModal = () => {
         setmodal(!modal)
+    }
+
+    const submitFriend = (user) => {
+        dispatch(addFriend(user))
+        dispatch(getAllPosts())
+        dispatch(getSuggestion())
     }
 
     return (
@@ -37,6 +43,7 @@ export default function ModalAddFriend({modal,setmodal}){
                                             <img src={photos.length?photos.find(photo => photo.id === user.id).url:null} alt=""></img>
                                         </div>
                                         <label>{user.name.split(' ')[0].concat(' '+user.name.split(' ')[1][0])}</label>
+                                        <button onClick={() => submitFriend(user)}>Add</button>
                                     </div>
                                 )
                             }):null}
@@ -44,7 +51,7 @@ export default function ModalAddFriend({modal,setmodal}){
                     </div>
                     <div className='Current'>
                         <div className='BoxProfiles'>
-                            {users.length?users.map(user => {
+                            {friends.length?friends.map(user => {
                                 return (
                                     <div>
                                         <div className='Profile' key={user.id}>

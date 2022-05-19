@@ -5,12 +5,7 @@ import '../scss/components/FotosPerfil.scss'
 export default function FotosPerfil({user}){
 
     const photos = useSelector((state) => state.photos)
-    let album = []
-    photos.map(photo => {
-        if(photo.albumId === 2){
-            return album.push(photo)
-        }
-    })
+    let album = photos.slice(11,20)
     
     return(
         <div className="FotosPerfil">
