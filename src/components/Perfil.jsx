@@ -6,7 +6,7 @@ import FotosPerfil from './FotosPerfil'
 import FriendSection from './FriendSection'
 import ModalAddFriend from './ModalAddFriend'
 import '../scss/components/Perfil.scss'
-import { recharge, getAllPhotos, getAllUsers, getAllPosts} from '../Redux/Action'
+import { recharge, getAllPhotos, getAllUsers, getAllPosts, getMyPosts} from '../Redux/Action'
 
 export default function Perfil(){
     const dispatch = useDispatch()
@@ -15,15 +15,21 @@ export default function Perfil(){
     const users = useSelector((state) => state.users)
     const friends = useSelector((state) => state.myFriends)
     const photos = useSelector((state) => state.photos)
-    const posts = useSelector((state) => state.posts)
-
+    const allPosts = useSelector((state) => state.posts)
+    const posts = useSelector((state) => state.myPosts)
     const [modal, setmodal] = useState(false)
 
     useEffect(()=>{
         dispatch(recharge())
-        dispatch(getAllUsers())
-        dispatch(getAllPosts())
-        dispatch(getAllPhotos())
+        if(users.length < 1){
+            dispatch(getAllUsers())
+        }
+        if(allPosts.length < 1){
+            dispatch(getAllPosts())
+        }
+        if(photos.length < 1){
+            dispatch(getAllPhotos())
+        }
     },[])
     return (
         <div className="Perfil">

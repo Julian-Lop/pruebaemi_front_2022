@@ -13,6 +13,6 @@ const persistedReducer = persistReducer(persistConfig, rootReducer)
 
 const composeEnhancer = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose
 const store = legacy_createStore(persistedReducer,composeEnhancer(applyMiddleware(thunk)))
-let persistor = persistStore(store)
+export const persistor = persistStore(store)
 
 export default store

@@ -5,9 +5,13 @@ import {
     GET_ALL_USERS,
     GET_ALL_PHOTOS,
     GET_ALL_POSTS,
+    GET_MY_POSTS,
     GET_SUGGESTION,
     ADD_FRIEND,
-    SEND_POST
+    SEND_POST,
+    RESET_POSTS,
+    ADD_LIKE,
+    SEND_COMMENT
 }
 from './types'
 
@@ -77,6 +81,16 @@ export const getAllPosts = () => {
     }
 }
 
+export const getMyPosts = () => {
+    return function(dispatch){
+        try {
+          return dispatch({type:GET_MY_POSTS, payload:null})  
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
 export const getSuggestion = () => {
     return function(dispatch){
         try {
@@ -103,6 +117,36 @@ export const sendPost = (post) => {
             return dispatch({type:SEND_POST, payload:post})
         } catch (error) {
             console.log(error)
+        }
+    }
+}
+
+export const resetPosts = () => {
+    return function(dispatch){
+        try {
+            return dispatch({type:RESET_POSTS, payload:'reset'})
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export const addLike = (like) => {
+    return function(dispatch){
+        try {
+            return dispatch({type:ADD_LIKE, payload:like})
+        } catch (error) {
+            console.log(error)
+        }
+    }
+}
+
+export const addComment = (comment) => {
+    return function(dispatch){
+        try {
+            return dispatch({type:SEND_COMMENT, payload:comment})
+        } catch (error) {
+            console.log()
         }
     }
 }

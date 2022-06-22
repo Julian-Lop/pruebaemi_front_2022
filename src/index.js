@@ -5,8 +5,6 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import {Provider} from 'react-redux'
 import store from './Redux/Store'
-import persistor from './Redux/Store'
-import {PersistGate} from 'redux-persist/es/integration/react'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
@@ -15,7 +13,7 @@ root.render(
       <React.StrictMode>
         <App />
       </React.StrictMode>
-   
+
   </Provider>  
 );
 

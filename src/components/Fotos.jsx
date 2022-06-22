@@ -19,8 +19,6 @@ export default function Fotos(){
 
     useEffect(()=>{
         dispatch(recharge())
-        dispatch(getAllUsers())
-        dispatch(getAllPhotos())
     },[])
 
     const photosPage = ()=>{
