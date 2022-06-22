@@ -3,7 +3,8 @@ import { useSelector } from 'react-redux'
 import { useDispatch } from 'react-redux'
 import { addLike } from '../Redux/Action'
 import { useState } from 'react'
-import WriteSection from './WriteSection'
+import WriteComment from './WriteComment'
+import Comments from './Comments'
 
 export default function Publication({publication}){
     const dispatch = useDispatch()
@@ -12,6 +13,7 @@ export default function Publication({publication}){
     const users = useSelector((state) => state.users)
     const photos = useSelector((state) => state.photos)
     const likes = useSelector((state) => state.likes)
+    const com = useSelector((state) => state.comments)
 
     let countLikes = likes.length? likes.filter(like => like.idPost === publication.id).length : 0
     let active = likes.find(like => {
@@ -52,12 +54,13 @@ export default function Publication({publication}){
                 </div>
             </div>
             <div className='ReactSection'>
-                <div><button onClick={(e) => activeOrInactiveComment(e)}><i className="far fa-comment"></i></button><p>{0}</p></div>
+                <div><button onClick={(e) => activeOrInactiveComment(e)}><i className="far fa-comment"></i></button><p>{com.filter(c => c.idPost === publication.id).length}</p></div>
                 <div><button onClick={(e) => submitLike(e)}><i className={active?"fas fa-heart":"far fa-heart"}></i></button><p>{countLikes}</p></div>
             </div>
            {activeComment ? 
             <div className='Comment'>
-                <WriteSection user={user}/>
+                <Comments publication={publication} comments={com}/>
+                <WriteComment user={user} publication={publication}/>
                 <br></br>
             </div> : null}
             <hr className='HrPublication'></hr>

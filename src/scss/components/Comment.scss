@@ -1,0 +1,78 @@
+@import '../abstracts/variables';
+
+.Post{
+    display: flex;
+}
+
+.PerfilPhoto{
+    width: 70px;
+    height: 70px;
+    margin: 10px 10px 0px 10px;
+}
+
+.PerfilPhoto img{
+    height: 70px;
+    width: 70px;
+    object-fit: cover;
+    border-radius: 50px;
+}
+
+.PostInfo{
+    width: 90%;
+    margin-top: 10px;
+    text-align: left;
+}
+
+.PostInfo div{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.PostInfo h2{
+    margin-right: 20px;
+}
+
+.PostInfo p{
+    width: 100%;
+    font-size: 16px;
+}
+
+.PostInfo label{
+    color: map-get($colors, "four");
+}
+
+.Comment{
+    margin-left: 20px;
+}
+
+.Comment .HrPublication{
+    margin: 0;
+    border: 1px solid map-get($colors, "one");
+}
+
+.ReactSection{
+    width: 100%;
+    display: flex;
+    justify-content: right;
+}
+
+.ReactSection div{
+    width: 50px;
+    height: 25px;
+    display: flex;
+    margin-left: 15px;
+    align-items: baseline;
+}
+
+.ReactSection p{
+    font-size: 16px;
+}
+
+.ReactSection div button{
+    background: none;
+    border: none;
+    font-size: 16px;
+    color: map-get($colors, "three");
+    cursor: pointer;
+}

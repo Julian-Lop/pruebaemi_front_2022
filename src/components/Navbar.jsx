@@ -42,7 +42,7 @@ export default function Navbar(){
             </div>
             <div className='Column2'>
                 <div className='Bell'>
-                    <i class="far fa-bell"></i>
+                    <i className="far fa-bell"></i>
                 </div>
                 <div className='PhotoUser'>
                     <Link to="/perfil"><img src={photo.length?photo.find(photo => photo.id === user.id).url:null} alt='FotoPerfil'></img></Link>

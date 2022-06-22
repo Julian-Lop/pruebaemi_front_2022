@@ -122,7 +122,7 @@ function rootReducer(state = initialState, {type, payload}){
         case SEND_COMMENT:
             return{
                 ...state,
-                comments : [state.comments, payload]
+                comments : [...state.comments, payload]
             }
 
         case LOGOUT:

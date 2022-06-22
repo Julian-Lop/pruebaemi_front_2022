@@ -1,0 +1,13 @@
+@import '../abstracts/variables';
+
+.Comments .Division{
+    margin-top: 20px;
+    width: 100%;
+    border: 1px solid map-get($colors, "one");
+}
+
+.CommentsContainer{
+    min-height: 20vh;
+    overflow: scroll;
+    overflow-x: hidden;
+}
