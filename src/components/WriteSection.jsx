@@ -1,5 +1,5 @@
 import '../scss/components/WriteSection.scss'
-import { sendPost } from '../Redux/Action/index'
+import { getMyPosts, sendPost } from '../Redux/Action/index'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
 
@@ -25,6 +25,7 @@ export default function WriteSection({user}){
 
     const handleSubmit = (e) => {
         dispatch(sendPost(post))
+        dispatch(getMyPosts())
         setpost({
             ...post,
             body: '',

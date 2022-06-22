@@ -1,6 +1,6 @@
 import { useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
-import {getSuggestion,addFriend, getAllPosts} from '../Redux/Action/index'
+import {getSuggestion,addFriend, getMyPosts} from '../Redux/Action/index'
 import '../scss/components/ModalAddFriend.scss'
 
 
@@ -21,7 +21,7 @@ export default function ModalAddFriend({modal,setmodal}){
 
     const submitFriend = (user) => {
         dispatch(addFriend(user))
-        dispatch(getAllPosts())
+        dispatch(getMyPosts())
         dispatch(getSuggestion())
     }
 
