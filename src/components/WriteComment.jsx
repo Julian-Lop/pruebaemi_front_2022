@@ -1,14 +1,15 @@
 import '../scss/components/WriteSection.scss'
-import { getMyPosts, sendPost } from '../Redux/Action/index'
 import { useDispatch, useSelector } from 'react-redux'
 import { useState } from 'react'
+import { sendComment } from '../Redux/Action'
 
-export default function WriteSection({user}){
+export default function WriteComment({user,publication}){
     const dispatch = useDispatch()
     const photo = useSelector((state) => state.photos)
     
 
-    const [post, setpost] = useState({
+    const [comment, setcomment] = useState({
+        idPost:publication?.id,
         userId:user?.id,
         title:'post '+user.name,
         body:null,
@@ -16,18 +17,17 @@ export default function WriteSection({user}){
     })
 
     const handleChange = (e) => {
-        setpost({
-            ...post,
+        setcomment({
+            ...comment,
             [e.target.name] : e.target.value
         })
-        console.log(post)
+        console.log(comment)
     }
 
     const handleSubmit = (e) => {
-        dispatch(sendPost(post))
-        dispatch(getMyPosts())
-        setpost({
-            ...post,
+        dispatch(sendComment(comment))
+        setcomment({
+            ...comment,
             body: '',
             id:Math.floor(Math.random(100) * 250)
         })
@@ -39,16 +39,16 @@ export default function WriteSection({user}){
                 <img src={photo.length?photo.find(photo => photo.id === user.id).url:null} alt="imagencomentario"></img>
             </div>
             <div className="CommentSection">
-                <label>Hola {user.name}, cuéntale a tus compañeros ¿Cómo va tu día laboral?</label>
-                <input type="text" name="body" onChange={(e) => handleChange(e)} value={post.body}></input>
+                <label>{user.name}, comenta esta publicación.</label>
+                <input type="text" name="body" onChange={(e) => handleChange(e)} value={comment.body}></input>
                 <div className="Actions">
                     <div className='ButtonsActions'>
                         <button><i class="far fa-images"></i></button>
                         <div className='Gif'></div>
-                        <button><i className="far fa-smile"></i></button>
+                        <button><i class="far fa-smile"></i></button>
                     </div>
                     <div>
-                        <button className='Send' onClick={(e) => handleSubmit(e)}>Publicar</button>
+                        <button className='Send' onClick={(e) => handleSubmit(e)}>Comentar</button>
                     </div>
                 </div>
             </div>

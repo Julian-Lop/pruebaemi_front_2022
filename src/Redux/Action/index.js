@@ -141,7 +141,7 @@ export const addLike = (like) => {
     }
 }
 
-export const addComment = (comment) => {
+export const sendComment = (comment) => {
     return function(dispatch){
         try {
             return dispatch({type:SEND_COMMENT, payload:comment})
