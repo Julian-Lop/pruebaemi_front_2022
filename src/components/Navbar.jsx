@@ -1,4 +1,3 @@
-import { useEffect, useState } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {Link, useNavigate} from "react-router-dom"
 import {logout} from "../Redux/Action/index"
@@ -10,8 +9,6 @@ export default function Navbar(){
 
     const user = useSelector((state) => state.user)
     const photo = useSelector((state) => state.photos)
-
-    const [crono, setcrono] = useState(false)
 
     var h4 = document.getElementsByTagName('h4')[0];
     var sec = localStorage.getItem('sec') ? localStorage.getItem('sec') : 0  
@@ -58,6 +55,7 @@ export default function Navbar(){
     let str = document.getElementById('switch1')
     let stp1 = document.getElementById('switch2')
     let stp2 = document.getElementById('switch3')
+    let stp3 = document.getElementById('switch4')
     
 
     async function start(){
@@ -68,6 +66,7 @@ export default function Navbar(){
         if(str.checked){
             stp1.checked = false
             stp2.checked = false
+            stp3.checked = false
         }
     }
 
@@ -101,7 +100,7 @@ export default function Navbar(){
                     </div>
                     <div>
                         Reunión
-                        <input type="checkbox" id="switch4"></input>
+                        <input type="checkbox" id="switch4" onChange={() => stop()}></input>
                         <label for="switch4" className='lbl'></label>
                     </div>
                 </div>
