@@ -16,6 +16,7 @@ export default function Fotos(){
 
     const [currentpage, setcurrentpage] = useState(0)
     const [slider, setslider] = useState(false)
+    const [indexImage, setindexImage] = useState(0)
 
     useEffect(()=>{
         dispatch(recharge())
@@ -35,6 +36,11 @@ export default function Fotos(){
         if(currentpage > 0){
             setcurrentpage(currentpage - 18)
         }
+    }
+
+    const handleImage = (index) => {
+        setindexImage(index)
+        setslider(!slider)
     }
 
     return(
@@ -85,12 +91,12 @@ export default function Fotos(){
                         <button className='EditInfo'><i class="far fa-edit"></i></button>
                     </div>
                     <hr></hr>
-                    {slider?<Carousel photos={photosPage()} setslider={setslider} slider={slider}/>:null}
+                    {slider?<Carousel photos={photosPage()} setslider={setslider} slider={slider} initialSlide={indexImage}/>:null}
                     <div className='Gallery'>
                         {photosPage().map(photo => {
                             return (
                             <div className='Item'>
-                                <img src={photo.url} alt='imagenalbum' onClick={() => setslider(!slider)} />
+                                <img src={photo.url} alt='imagenalbum' onClick={() => handleImage(photo.id)} />
                             </div>)
                         })}
                     </div>
