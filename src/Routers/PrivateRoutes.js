@@ -9,7 +9,7 @@ import Fotos from "../components/Fotos"
 export default function PrivateRoutes(){
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
+    
     useEffect( ()=>{
         const token = localStorage.getItem('token')
         if(!token) return navigate('/')
