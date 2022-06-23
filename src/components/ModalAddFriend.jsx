@@ -43,7 +43,7 @@ export default function ModalAddFriend({modal,setmodal}){
                                             <img src={photos.length?photos.find(photo => photo.id === user.id).url:null} alt=""></img>
                                         </div>
                                         <label>{user.name.split(' ')[0].concat(' '+user.name.split(' ')[1][0])}</label>
-                                        <button onClick={() => submitFriend(user)}>Add</button>
+                                        <button onClick={() => submitFriend(user)}><i class="fas fa-plus"></i></button>
                                     </div>
                                 )
                             }):null}

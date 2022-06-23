@@ -59,6 +59,8 @@
     margin-left: 5%;
     border-right: 1px solid map-get($colors, "one");
     text-align: center;
+    overflow: scroll;
+    overflow-x: hidden;
 }
 
 .BoxProfiles{
@@ -96,6 +98,19 @@
         "Suggestion Current" 90% /
         35% auto
     ;
+}
+
+.BoxProfiles button{
+    border: none;
+    color: map-get($colors, "one");
+    width: 28px;
+    padding: 5px;
+    margin-left: 5px;
+    border-radius: 5px;
+    background: map-get($colors, "gradient");
+    font-family: $font-principal;
+    cursor: pointer;
+    font-size: 15px;
 }
 
 @media (min-width: 800px){
