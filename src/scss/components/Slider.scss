@@ -1,24 +1,58 @@
 @import '../abstracts/variables';
 
 .Slider{
-    position: absolute;
+    position: fixed;
+    top: 0;
     left: 0;
     right: 0;
     margin: auto;
-    width: 500px;
-    height: 600px;
+    width: 100%;
+    height:100vh;
+    background: rgba(0,0,0,0.3);
+    backdrop-filter: blur(1px);
 }
 
 .Slider button{
+    top: 45%;
+    margin-left: 5%;
+    margin-right: 5%;
+    background: map-get($colors, "four");
+    height: 40px;
+}
+
+.Slider .exitButton{
     position: absolute;
-    right: 0;
-    margin-right: 10px;
-    margin-top: 10px;
-    z-index: 2;
-    background: none;
+    z-index: 100;
+    right: 22%;
+    top: 26%;
     border: none;
+    width: 30px;
+    height: 30px;
+    font-size: 25px;
+    background: rgba(0,0,0,0.2);
+    border-radius: 100%;
     color: map-get($colors, "five");
-    font-size: 20px;
     cursor: pointer;
 }
 
+.SliderContent{
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+    margin-top: 25vh;
+    width: 50%;
+    height: 50%;
+}
+
+.SliderContentItem img{
+    width: 95%;
+    height: 50vh;
+    border-radius: 20px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.SliderContentItem{
+  width: 50%;
+}
