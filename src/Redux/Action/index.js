@@ -16,12 +16,14 @@ import {
 }
 from './types'
 
-export const getUser = (email) => {
+export const getUser = (email,id) => {
     return async function(dispatch){
         try {
             let json = await axios('https://jsonplaceholder.typicode.com/users?email='+email)
-            if(json.data.length) localStorage.setItem('token',email)
-            return dispatch({type: GET_USER, payload: json.data})
+            if(Number(json.data[0]?.id) === Number(id)){
+                localStorage.setItem('token',email) 
+                return dispatch({type: GET_USER, payload: json.data})
+            }
         } catch (error) {
             console.log(error)
         }
