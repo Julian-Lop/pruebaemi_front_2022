@@ -22,17 +22,17 @@ export default function Login(){
 
     const handleSubmit =async (e) => {
         e.preventDefault()
-        let temp
         if(user.email && user.password){
-            temp = await dispatch(getUser(user.email))
+            await dispatch(getUser(user.email,Number(user.password)))
             user.email = ''
             user.password = ''
-            if(temp.payload[0].name) return navigate('/perfil')
-            return alert(user.email+'|'+user.password)
+            if(!localStorage.getItem('token')){
+                console.log('incorrectos')
+                return alert('contraseña o email incorrectos')
+            }
+            return navigate('/perfil')
         }
-        alert('there are empty fields')
-        user.email = ''
-        user.password = ''
+        alert('hay campos vacios')
     }
 
     return (
