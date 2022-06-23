@@ -3,7 +3,7 @@ import '../scss/components/FriendSection.scss'
 
 export default function FriendSection({modal,setmodal,friends}){
 
-    const photos = useSelector((state) => state.photos)
+    const photosProfile = useSelector((state) => state.photosProfile)
 
     const changeModal = () => {
         setmodal(!modal)
@@ -17,7 +17,7 @@ export default function FriendSection({modal,setmodal,friends}){
                 friends.map(friend => {
                     return(<div>
                         <div className='ProfileFriend' key={friend.id}>
-                            <img src={photos.length?photos.find(photo => photo.id === friend.id).url:null} alt='perfiluser'></img>
+                            <img src={photosProfile.length?photosProfile.find(photo => Number(photo.id) === (friend.id*100)).download_url:null} alt='perfiluser'></img>
                         </div>
                         <label>{friend.name.split(' ')[0].concat(' '+friend.name.split(' ')[1][0])}</label>
                         </div>

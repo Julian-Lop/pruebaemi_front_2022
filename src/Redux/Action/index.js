@@ -11,7 +11,8 @@ import {
     SEND_POST,
     RESET_POSTS,
     ADD_LIKE,
-    SEND_COMMENT
+    SEND_COMMENT,
+    GET_PHOTOS_PROFILE
 }
 from './types'
 
@@ -59,10 +60,26 @@ export const getAllUsers = () => {
     }
 }
 
+export const getPhotosProfile = () => {
+    return async function(dispatch){
+        try {
+            let photosProfile = []
+            for(let i=0; i < 10; i++){
+                let ID = ((i+1)*100)
+                let json = await axios(`https://picsum.photos/id/${ID}/info`)
+                photosProfile.push(json.data)
+            }
+            return dispatch({type:GET_PHOTOS_PROFILE, payload:photosProfile})
+        } catch (error) {
+            
+        }
+    }
+}
+
 export const getAllPhotos = () => {
     return async function(dispatch){
         try {
-            let json = await axios('https://jsonplaceholder.typicode.com/photos')
+            let json = await axios('https://picsum.photos/v2/list?page=1&limit=54')
             return dispatch({type:GET_ALL_PHOTOS,payload:json.data})
         } catch (error) {
             console.log(error)

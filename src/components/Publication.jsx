@@ -11,7 +11,7 @@ export default function Publication({publication}){
 
     const user = useSelector((state) => state.user)
     const users = useSelector((state) => state.users)
-    const photos = useSelector((state) => state.photos)
+    const photosProfile = useSelector((state) => state.photosProfile)
     const likes = useSelector((state) => state.likes)
     const com = useSelector((state) => state.comments)
 
@@ -43,7 +43,7 @@ export default function Publication({publication}){
         <div className="Publication">
             <div className='Post'>
                 <div className="PerfilPhoto">
-                    <img src={photos.length?photos.find(photo => photo.id === publication.userId).url:null} alt="imagencomentario"></img>
+                    <img src={photosProfile.length?photosProfile.find(photo => Number(photo.id) === (publication.userId*100)).download_url:null} alt="imagencomentario"></img>
                 </div>
                 <div className="PostInfo">
                     <div>

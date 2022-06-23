@@ -1,3 +1,4 @@
+import { useEffect } from 'react'
 import {useDispatch, useSelector} from 'react-redux'
 import {Link, useNavigate} from "react-router-dom"
 import {logout} from "../Redux/Action/index"
@@ -8,7 +9,7 @@ export default function Navbar(){
     const navigate = useNavigate()
 
     const user = useSelector((state) => state.user)
-    const photo = useSelector((state) => state.photos)
+    const photosProfile = useSelector((state) => state.photosProfile)
 
     var h4 = document.getElementsByTagName('h4')[0];
     var sec = localStorage.getItem('sec') ? localStorage.getItem('sec') : 0  
@@ -74,7 +75,6 @@ export default function Navbar(){
         clearTimeout(t)
         str.checked = false
     }
-   
 
     return (
         <div className="Nav">
@@ -86,22 +86,22 @@ export default function Navbar(){
                     <div>
                         Oficina
                         <input type="checkbox" id="switch1" onChange={() => start()}></input>
-                        <label for="switch1" className='lbl'></label>
+                        <label htmlFor="switch1" className='lbl'></label>
                     </div>
                     <div>
                         Almuerzo
                         <input type="checkbox" id="switch2" onChange={() => stop()}></input>
-                        <label for="switch2" className='lbl'></label>
+                        <label htmlFor="switch2" className='lbl'></label>
                     </div>
                     <div>
                         Descanso
                         <input type="checkbox" id="switch3" onChange={() => stop()}></input>
-                        <label for="switch3" className='lbl'></label>
+                        <label htmlFor="switch3" className='lbl'></label>
                     </div>
                     <div>
                         Reunión
                         <input type="checkbox" id="switch4" onChange={() => stop()}></input>
-                        <label for="switch4" className='lbl'></label>
+                        <label htmlFor="switch4" className='lbl'></label>
                     </div>
                 </div>
             </div>
@@ -110,7 +110,7 @@ export default function Navbar(){
                     <i className="far fa-bell"></i>
                 </div>
                 <div className='PhotoUser'>
-                    <Link to="/perfil"><img src={photo.length?photo.find(photo => photo.id === user.id).url:null} alt='FotoPerfil'></img></Link>
+                    <Link to="/perfil"><img src={photosProfile.length?photosProfile.find(photo => Number(photo.id) === (user.id*100)).download_url:null} alt='FotoPerfil'></img></Link>
                 </div>
                 <div className='Logout'>
                     <label onClick={() => exitSession()}>Cerrar Sesión</label>

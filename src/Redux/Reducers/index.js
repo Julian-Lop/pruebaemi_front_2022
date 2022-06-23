@@ -9,13 +9,15 @@ import {
     GET_MY_POSTS,
     LOGOUT,
     ADD_LIKE,
-    SEND_COMMENT
+    SEND_COMMENT,
+    GET_PHOTOS_PROFILE
 } from '../Action/types'
 
 const initialState = {
     user : {},
     users : [],
     photos : [],
+    photosProfile: [],
     posts : [],
     myPosts : [],
     comments : [],
@@ -42,7 +44,13 @@ function rootReducer(state = initialState, {type, payload}){
         case GET_ALL_PHOTOS:
             return{
                 ...state,
-                photos : payload.slice(0,54)
+                photos : payload
+            }
+        
+        case GET_PHOTOS_PROFILE:
+            return{
+                ...state,
+                photosProfile : payload
             }
 
         case GET_ALL_POSTS:     
