@@ -5,7 +5,7 @@ import { sendComment } from '../Redux/Action'
 
 export default function WriteComment({user,publication}){
     const dispatch = useDispatch()
-    const photo = useSelector((state) => state.photos)
+    const photosProfile = useSelector((state) => state.photosProfile)
     
 
     const [comment, setcomment] = useState({
@@ -36,7 +36,7 @@ export default function WriteComment({user,publication}){
     return (
         <div className="WriteSection">
             <div className="PerfilComment">
-                <img src={photo.length?photo.find(photo => photo.id === user.id).url:null} alt="imagencomentario"></img>
+                <img src={photosProfile.length?photosProfile.find(photo => Number(photo.id) === (user.id*100)).download_url:null} alt="imagencomentario"></img>
             </div>
             <div className="CommentSection">
                 <label>{user.name}, comenta esta publicación.</label>

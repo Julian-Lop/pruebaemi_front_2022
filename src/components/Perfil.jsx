@@ -6,7 +6,7 @@ import FotosPerfil from './FotosPerfil'
 import FriendSection from './FriendSection'
 import ModalAddFriend from './ModalAddFriend'
 import '../scss/components/Perfil.scss'
-import { recharge, getAllPhotos, getAllUsers, getAllPosts, getMyPosts} from '../Redux/Action'
+import { recharge, getAllPhotos, getAllUsers, getAllPosts, getMyPosts, getPhotosProfile} from '../Redux/Action'
 
 export default function Perfil(){
     const dispatch = useDispatch()
@@ -15,6 +15,7 @@ export default function Perfil(){
     const users = useSelector((state) => state.users)
     const friends = useSelector((state) => state.myFriends)
     const photos = useSelector((state) => state.photos)
+    const photosProfile = useSelector((state) => state.photosProfile)
     const allPosts = useSelector((state) => state.posts)
     const posts = useSelector((state) => state.myPosts)
     const [modal, setmodal] = useState(false)
@@ -30,6 +31,9 @@ export default function Perfil(){
         if(photos.length < 1){
             dispatch(getAllPhotos())
         }
+        if(photosProfile.length < 1){
+            dispatch(getPhotosProfile())
+        }
     },[])
     return (
         <div className="Perfil">
@@ -40,7 +44,7 @@ export default function Perfil(){
                 </header>
                 <nav className='Navbar'>
                     <div className='Photo'>
-                        <img src={photos.length?photos.find(photo => photo.id === user.id).url:null} alt='fotoperfil'></img>
+                        <img src={photosProfile.length?photosProfile.find(photo => Number(photo.id) === (user.id*100)).download_url:null} alt='fotoperfil'></img>
                     </div>
                     <div className='Info'>
                         <div className='InfoBasic'>

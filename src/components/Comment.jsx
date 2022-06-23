@@ -8,7 +8,7 @@ export default function Comment({comment}){
 
     const user = useSelector((state) => state.user)
     const users = useSelector((state) => state.users)
-    const photos = useSelector((state) => state.photos)
+    const photosProfile = useSelector((state) => state.photosProfile)
     const likes = useSelector((state) => state.likes)
 
     let countLikes = likes.length? likes.filter(like => like.idPost === comment.id).length : 0
@@ -34,7 +34,7 @@ export default function Comment({comment}){
         <div className="Comment">
             <div className='Post'>
                 <div className="PerfilPhoto">
-                    <img src={photos.length?photos.find(photo => photo.id === comment.userId).url:null} alt="imagencomentario"></img>
+                    <img src={photosProfile.length?photosProfile.find(photo => Number(photo.id) === (comment.userId*100)).download_url:null} alt="imagencomentario"></img>
                 </div>
                 <div className="PostInfo">
                     <div>

@@ -5,7 +5,7 @@ import { useState } from 'react'
 
 export default function WriteSection({user}){
     const dispatch = useDispatch()
-    const photo = useSelector((state) => state.photos)
+    const photosProfile = useSelector((state) => state.photosProfile)
     
 
     const [post, setpost] = useState({
@@ -36,14 +36,14 @@ export default function WriteSection({user}){
     return (
         <div className="WriteSection">
             <div className="PerfilComment">
-                <img src={photo.length?photo.find(photo => photo.id === user.id).url:null} alt="imagencomentario"></img>
+                <img src={photosProfile.length?photosProfile.find(photo => Number(photo.id) === (user.id*100)).download_url:null} alt="imagencomentario"></img>
             </div>
             <div className="CommentSection">
                 <label>Hola {user.name}, cuéntale a tus compañeros ¿Cómo va tu día laboral?</label>
                 <input type="text" name="body" onChange={(e) => handleChange(e)} value={post.body}></input>
                 <div className="Actions">
                     <div className='ButtonsActions'>
-                        <button><i class="far fa-images"></i></button>
+                        <button><i className="far fa-images"></i></button>
                         <div className='Gif'></div>
                         <button><i className="far fa-smile"></i></button>
                     </div>

@@ -9,7 +9,7 @@ export default function ModalAddFriend({modal,setmodal}){
 
     const friends = useSelector((state) => state.myFriends)
     const suggestions = useSelector((state) => state.suggestions)
-    const photos = useSelector((state) => state.photos)
+    const photosProfile = useSelector((state) => state.photosProfile)
 
     useEffect(()=>{
         dispatch(getSuggestion())
@@ -40,7 +40,7 @@ export default function ModalAddFriend({modal,setmodal}){
                                 return (
                                     <div>
                                         <div className='Profile' key={user.id}>
-                                            <img src={photos.length?photos.find(photo => photo.id === user.id).url:null} alt=""></img>
+                                            <img src={photosProfile.length?photosProfile.find(photo => Number(photo.id) === (user.id*100)).download_url:null} alt=""></img>
                                         </div>
                                         <label>{user.name.split(' ')[0].concat(' '+user.name.split(' ')[1][0])}</label>
                                         <button onClick={() => submitFriend(user)}><i class="fas fa-plus"></i></button>
@@ -55,7 +55,7 @@ export default function ModalAddFriend({modal,setmodal}){
                                 return (
                                     <div>
                                         <div className='Profile' key={user.id}>
-                                            <img src={photos.length?photos.find(photo => photo.id === user.id).url:null} alt=""></img>
+                                            <img src={photosProfile.length?photosProfile.find(photo => Number(photo.id) === (user.id*100)).download_url:null} alt=""></img>
                                         </div>
                                         <label>{user.name.split(' ')[0].concat(' '+user.name.split(' ')[1][0])}</label>
                                     </div>

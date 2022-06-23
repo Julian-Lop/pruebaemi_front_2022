@@ -16,7 +16,7 @@ export default function FotosPerfil({user}){
                 {album.length?album.slice(0,9).map(photo => {
                     return (
                         <div className='PictureItem' key={photo.id}>
-                            <img src={photo.url} alt="fotoalbum"></img>
+                            <img src={photo.download_url} alt="fotoalbum"></img>
                         </div>
                     )
                 }):null}

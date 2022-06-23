@@ -1,6 +1,6 @@
 import {useEffect, useState} from 'react'
 import {useDispatch, useSelector} from 'react-redux'
-import { recharge,getAllUsers,getAllPhotos } from '../Redux/Action'
+import { recharge } from '../Redux/Action'
 import '../scss/components/Perfil.scss'
 import '../scss/components/Fotos.scss'
 import flechaizq from '../images/flechaizq.png'
@@ -12,11 +12,22 @@ export default function Fotos(){
 
     const user = useSelector((state) => state.user)
     const photos = useSelector((state) => state.photos)
+    const photosProfile = useSelector((state) => state.photosProfile)
     const friends = useSelector((state) => state.myFriends)
 
     const [currentpage, setcurrentpage] = useState(0)
     const [slider, setslider] = useState(false)
     const [indexImage, setindexImage] = useState(0)
+    const [positionPage, setpositionPage] = useState(0)
+
+    let divisor = 18
+    let newPhotos = []
+
+    for(let i=0; i < photos.length; i){
+        let temp = photos.slice(i,divisor+i)
+        newPhotos.push(temp)
+        i=i+divisor
+    }
 
     useEffect(()=>{
         dispatch(recharge())
@@ -29,13 +40,22 @@ export default function Fotos(){
     const nextPage = () => {
         if(currentpage < photos.length-18){
             setcurrentpage(currentpage + 18)
+            let i = positionPage+1
+            setpositionPage(i)
         }
     }
 
     const prevPage = () => {
         if(currentpage > 0){
             setcurrentpage(currentpage - 18)
+            let i = positionPage-1
+            setpositionPage(i)
         }
+    }
+
+    const positionClick = (index) => {
+        setcurrentpage(index*divisor)
+        setpositionPage(index)
     }
 
     const handleImage = (index) => {
@@ -52,7 +72,7 @@ export default function Fotos(){
                 </header>
                 <nav className='Navbar'>
                     <div className='Photo'>
-                        <img src={photos.length?photos.find(photo => photo.id === user.id).url:null} alt='fotoperfil'></img>
+                        <img src={photosProfile.length?photosProfile.find(photo => Number(photo.id) === (user.id*100)).download_url:null} alt='fotoperfil'></img>
                     </div>
                     <div className='Info'>
                         <div className='InfoBasic'>
@@ -85,7 +105,7 @@ export default function Fotos(){
                 <div className='PictureContainerUser'>
                     <div className='TitlePictures'>
                         <div className='PictureProfile'>
-                            <img src={photos.length?photos.find(photo => photo.id === user.id).url:null} alt='PictureInGallery'></img>
+                            <img src={photosProfile.length?photosProfile.find(photo => Number(photo.id) === (user.id*100)).download_url:null} alt='PictureInGallery'></img>
                         </div>
                         <div className='UserName'><h1>{user?user.name:null}</h1></div>
                         <button className='EditInfo'><i class="far fa-edit"></i></button>
@@ -93,16 +113,21 @@ export default function Fotos(){
                     <hr></hr>
                     {slider?<Carousel photos={photosPage()} setslider={setslider} slider={slider} initialSlide={indexImage}/>:null}
                     <div className='Gallery'>
-                        {photosPage().map(photo => {
+                        {photosPage().map((photo,index) => {
                             return (
-                            <div className='Item'>
-                                <img src={photo.url} alt='imagenalbum' onClick={() => handleImage(photo.id)} />
+                            <div className='Item' key={photo.id}>
+                                <img src={photo.download_url} alt='imagenalbum' onClick={() => handleImage(index)} />
                             </div>)
                         })}
                     </div>
                     <div className='ButtonPage'>
-                        <button className='ButtonSelect' onClick={() => prevPage()}><img src={flechaizq}></img></button>
-                        <button className='ButtonSelect' onClick={() => nextPage()}><img src={flechader}></img></button>            
+                        <button className='ButtonSelect' onClick={() => prevPage()}><img src={flechaizq} alt="flechaIzquierda"></img></button>
+                        {newPhotos.length && photosPage().length?newPhotos.map((arrayPhoto,index) => 
+                        (
+                            <button key={index} onClick={() => positionClick(index)} className='ButtonSelect' disabled={positionPage === index?true:false}>{index+1}</button>  
+                        ))
+                        :null}
+                        <button className='ButtonSelect' onClick={() => nextPage()}><img src={flechader} alt="flechaDerecha"></img></button>            
                     </div>
                 </div>
             </div>
